@@ -8,7 +8,7 @@ class EgeResultsSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     def __init__(self, *args, **kwargs):
         remove_fields = kwargs.pop('remove_fields', None)
 
@@ -26,7 +26,12 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         style={'input_type': 'password', 'placeholder': 'Password'}
     )
     token = serializers.CharField(write_only=True, allow_blank=True)
-    ege_results = EgeResultsSerializer(default=EgeResults.objects.create())
+    ege_results = EgeResultsSerializer(required=False)
+
+    def create(self, validated_data):
+        validated_data["ege_results"] = EgeResults.objects.create()
+        obj = User.objects.create(**validated_data)
+        return obj
 
     class Meta:
         model = User
