@@ -8,6 +8,8 @@ class University(models.Model):
     preview = models.ImageField()
     qs = models.TextField()
     programs_counter = models.IntegerField()
+    lat = models.FloatField()
+    lon = models.FloatField()
 
     def get_photos(self):
         return UniversityPhotos.objects.filter(university=self)
