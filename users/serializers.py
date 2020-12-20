@@ -38,7 +38,7 @@ class UserSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         if not validated_data["ege_results"]:
             validated_data["ege_results"] = EgeResults.objects.create()
-        if not validated_data["achievements"]
+        if not validated_data["achievements"]:
             validated_data["achievements"] = Achievements.objects.create()
 
         obj = User.objects.create(**validated_data)
