@@ -47,15 +47,15 @@ class UserSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
 
     def create(self, validated_data):
-        ege_results = None
+        ege_results_kwargs = {}
         if validated_data.get('ege_results'):
-            ege_results = validated_data.pop('ege_results')
-            ege_results = EgeResults.objects.create(**ege_results)
+            ege_results_kwargs = validated_data.pop('ege_results')
+        ege_results = EgeResults.objects.create(**ege_results_kwargs)
 
-        achievements = None
+        achievements_kwargs = {}
         if validated_data.get('achievements'):
-            achievements = validated_data.pop('achievements')
-            achievements = Achievements.objects.create(**achievements)
+            achievements_kwargs = validated_data.pop('achievements')
+        achievements = Achievements.objects.create(**achievements_kwargs)
 
         user = User.objects.create(**validated_data, ege_results=ege_results, achievements=achievements)
         return user
