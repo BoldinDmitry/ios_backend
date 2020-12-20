@@ -28,6 +28,12 @@ class EgeResults(models.Model):
     literature = models.IntegerField(default=0)
 
 
+class Achievements(models.Model):
+    goldenMedal = models.BooleanField(default=False)
+    gto = models.BooleanField(default=False)
+    volunteering = models.BooleanField(default=False)
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), blank=True, null=True, unique=True)
     password = models.CharField(_('password'), max_length=128, default=uuid.uuid4)
@@ -37,6 +43,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(_('date joined'), auto_now_add=True)
     is_active = models.BooleanField(_('active'), default=True)
     ege_results = models.ForeignKey(EgeResults, on_delete=models.CASCADE, blank=True, null=True)
+    achievements = models.ForeignKey(Achievements, on_delete=models.CASCADE, blank=True, null=True)
 
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)

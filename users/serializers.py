@@ -1,10 +1,16 @@
-from .models import User, EgeResults, Feedback
+from .models import User, EgeResults, Feedback, Achievements
 from rest_framework import serializers
 
 
 class EgeResultsSerializer(serializers.ModelSerializer):
     class Meta:
         model = EgeResults
+        fields = '__all__'
+
+
+class AchievementsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Achievements
         fields = '__all__'
 
 
@@ -27,6 +33,7 @@ class UserSerializer(serializers.ModelSerializer):
     )
     token = serializers.CharField(allow_blank=True, read_only=True)
     ege_results = EgeResultsSerializer(required=False)
+    achievements = AchievementsSerializer(required=False)
 
     def create(self, validated_data):
         validated_data["ege_results"] = EgeResults.objects.create()
