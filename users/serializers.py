@@ -25,7 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
         help_text='Leave empty if no change needed',
         style={'input_type': 'password', 'placeholder': 'Password'}
     )
-    token = serializers.CharField(write_only=True, allow_blank=True)
+    token = serializers.CharField(allow_blank=True)
     ege_results = EgeResultsSerializer(required=False)
 
     def create(self, validated_data):
@@ -43,8 +43,7 @@ class UserSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "date_joined",
-            "ege_results",
-            "token"
+            "ege_results"
         ]
 
 
