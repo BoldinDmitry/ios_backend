@@ -44,6 +44,7 @@ class UserSerializer(serializers.ModelSerializer):
             "last_name",
             "date_joined",
             "ege_results",
+            "token"
         ]
 
 
