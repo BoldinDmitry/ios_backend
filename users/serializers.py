@@ -36,24 +36,29 @@ class UserSerializer(serializers.ModelSerializer):
     achievements = AchievementsSerializer(required=False)
 
     def update(self, instance: User, validated_data):
-        if self.validated_data.get('ege_results'):
-            ege_results = self.validated_data.pop('ege_results')
+        if validated_data.get('ege_results'):
+            ege_results = validated_data.pop('ege_results')
             EgeResults.objects.update(**ege_results)
 
-        if self.validated_data.get('achievements'):
-            achievements = self.validated_data.pop('achievements')
+        if validated_data.get('achievements'):
+            achievements = validated_data.pop('achievements')
             Achievements.objects.update(**achievements)
 
-        super().update(instance, validated_data)
+        return super().update(instance, validated_data)
 
     def create(self, validated_data):
-        if not validated_data.get("ege_results"):
-            validated_data["ege_results"] = EgeResults.objects.create()
-        if not validated_data.get("achievements"):
-            validated_data["achievements"] = Achievements.objects.create()
+        ege_results = None
+        if validated_data.get('ege_results'):
+            ege_results = validated_data.pop('ege_results')
+            ege_results = EgeResults.objects.create(**ege_results)
 
-        obj = User.objects.create(**validated_data)
-        return obj
+        achievements = None
+        if validated_data.get('achievements'):
+            achievements = validated_data.pop('achievements')
+            achievements = Achievements.objects.create(**achievements)
+
+        user = User.objects.create(**validated_data, ege_results=ege_results, achievements=achievements)
+        return user
 
     class Meta:
         model = User
