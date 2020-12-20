@@ -47,6 +47,7 @@ class UserSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
 
     def create(self, validated_data):
+        print(validated_data)
         ege_results_kwargs = {}
         if validated_data.get('ege_results'):
             ege_results_kwargs = validated_data.pop('ege_results')
