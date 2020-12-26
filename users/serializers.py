@@ -1,4 +1,5 @@
-from .models import User, EgeResults, Feedback, Achievements
+from universities.serializers import EdProgramSerializer
+from .models import User, EgeResults, Feedback, Achievements, Favorite
 from rest_framework import serializers
 
 
@@ -80,4 +81,12 @@ class FeedbackSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Feedback
+        fields = '__all__'
+
+
+class FavoriteSerializer(serializers.ModelSerializer):
+    education_program = EdProgramSerializer()
+
+    class Meta:
+        model = Favorite
         fields = '__all__'

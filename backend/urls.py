@@ -24,6 +24,7 @@ from universities import views as universities_views
 
 router = routers.SimpleRouter()
 
+router.register(r"users/education_programs", users_views.FavoriteEdProgramsViewSet)
 router.register(r"users", users_views.UserViewSet)
 router.register(r"universities", universities_views.UniversitiesViewSet)
 router.register(r"feedback", users_views.FeedbackViewSet)

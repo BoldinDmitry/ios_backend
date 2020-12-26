@@ -5,6 +5,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 
+from universities.models import EdProgram
 from users.managers import UserManager
 
 
@@ -56,8 +57,16 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
+    def __str__(self):
+        return self.email
+
 
 class Feedback(models.Model):
     status = models.TextField()
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     email = models.EmailField()
+
+
+class Favorite(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    education_program = models.ForeignKey(EdProgram, on_delete=models.CASCADE)
