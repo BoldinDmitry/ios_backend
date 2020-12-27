@@ -64,7 +64,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Feedback(models.Model):
     title = models.TextField()
     message = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     email = models.EmailField()
 
 
