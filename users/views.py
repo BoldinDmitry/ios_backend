@@ -26,7 +26,7 @@ class LoginView(views.APIView):
 
     def post(self, request, *args, **kwargs):
         data = request.data
-
+        print("LOGIN REQUEST::: ")
         token = data.get('token', )
 
         user = get_object_or_404(User, token=token)
