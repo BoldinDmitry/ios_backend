@@ -4,9 +4,26 @@ from universities.models import University, UniversityPhotos, EdProgram
 
 
 class EdProgramSerializer(serializers.ModelSerializer):
+    university = serializers.SerializerMethodField()
+    university_id = serializers.SerializerMethodField()
+
+    def get_university_id(self, obj:  EdProgram):
+        return obj.university.pk
+
+    def get_university(self, obj:  EdProgram):
+        return obj.university.name
+
     class Meta:
         model = EdProgram
-        fields = '__all__'
+        fields = [
+            'code',
+            'name',
+            'university',
+            'university_id',
+            'photo',
+            'probability',
+            'probability_number',
+        ]
 
 
 class UniversitySerializer(serializers.ModelSerializer):
