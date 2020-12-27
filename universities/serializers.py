@@ -16,6 +16,7 @@ class EdProgramSerializer(serializers.ModelSerializer):
     class Meta:
         model = EdProgram
         fields = [
+            'id',
             'code',
             'name',
             'university',
