@@ -25,7 +25,7 @@ class LoginView(views.APIView):
     permission_classes = []
 
     def post(self, request, *args, **kwargs):
-        print("LOGIN REQUEST::: ")
+        print("LOGIN REQUEST::: ", request.body)
         data = request.data
         token = data.get('token', )
 
