@@ -33,7 +33,9 @@ class UniversityPhotos(models.Model):
 class EdProgram(models.Model):
     code = models.TextField()
     university = models.ForeignKey(University, on_delete=models.CASCADE)
-    preview = models.ImageField()
+    photo = models.ImageField()
+    probability = models.TextField()
+    probability_number = models.FloatField()
 
     def __str__(self):
         return f"{self.university.name}: {self.code}"
