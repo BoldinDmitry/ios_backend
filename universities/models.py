@@ -32,6 +32,7 @@ class UniversityPhotos(models.Model):
 
 class EdProgram(models.Model):
     code = models.TextField()
+    name = models.TextField()
     university = models.ForeignKey(University, on_delete=models.CASCADE)
     photo = models.ImageField()
     probability = models.TextField()
