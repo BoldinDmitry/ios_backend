@@ -29,6 +29,7 @@ router.register(r"users", users_views.UserViewSet)
 router.register(r"universities", universities_views.UniversitiesViewSet)
 router.register(r"feedback", users_views.FeedbackViewSet)
 router.register(r"ege_results", users_views.EgeResultsViewSet)
+router.register(r"education_programs", universities_views.EdProgramsViewSet)
 
 urlpatterns = [
     path("api/v1/", include(router.urls)),

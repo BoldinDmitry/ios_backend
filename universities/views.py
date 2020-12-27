@@ -1,9 +1,8 @@
-from django.shortcuts import render
 from rest_framework import mixins, viewsets, status, views
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
-from universities.models import University
+from universities.models import University, EdProgram
 from universities.serializers import UniversitySerializer, EdProgramSerializer
 
 
@@ -13,6 +12,13 @@ class UniversitiesViewSet(mixins.CreateModelMixin,
                           viewsets.GenericViewSet):
     queryset = University.objects.all()
     serializer_class = UniversitySerializer
+    authentication_classes = []
+
+
+class EdProgramsViewSet(mixins.ListModelMixin,
+                        viewsets.GenericViewSet):
+    queryset = EdProgram.objects.all()
+    serializer_class = EdProgramSerializer
     authentication_classes = []
 
 
