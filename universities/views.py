@@ -17,6 +17,7 @@ class UniversitiesViewSet(mixins.CreateModelMixin,
 
 class EdProgramsViewSet(mixins.ListModelMixin,
                         viewsets.GenericViewSet):
+    pagination_class = None
     queryset = EdProgram.objects.all()
     serializer_class = EdProgramSerializer
     authentication_classes = []
