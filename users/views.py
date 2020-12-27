@@ -4,6 +4,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from universities.serializers import EdProgramSerializer
 from users.models import User, Feedback, EgeResults, Favorite
 from users.serializers import UserSerializer, FeedbackSerializer, EgeResultsSerializer, FavoriteSerializer
 
@@ -83,6 +84,11 @@ class FavoriteEdProgramsViewSet(viewsets.GenericViewSet):
 
     def list(self, request, *args, **kwargs):
         queryset = self.queryset.filter(user_id=request.user.pk)
-        serializer = self.get_serializer(queryset, many=True)
+
+        education_programs = []
+        for favorite in queryset:
+            education_programs.append(favorite.education_program)
+
+        serializer = EdProgramSerializer(education_programs, many=True)
 
         return Response(serializer.data)
