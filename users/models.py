@@ -58,7 +58,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _('users')
 
     def __str__(self):
-        return self.email
+        return self.token
 
 
 class Feedback(models.Model):
