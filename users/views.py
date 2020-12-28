@@ -95,6 +95,6 @@ class FavoriteEdProgramsViewSet(viewsets.GenericViewSet):
         for favorite in queryset:
             education_programs.append(favorite.education_program)
 
-        serializer = EdProgramSerializer(education_programs, many=True)
+        serializer = EdProgramSerializer(education_programs, many=True, context={"request": request})
 
         return Response(serializer.data)

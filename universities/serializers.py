@@ -6,12 +6,18 @@ from universities.models import University, UniversityPhotos, EdProgram
 class EdProgramSerializer(serializers.ModelSerializer):
     university = serializers.SerializerMethodField()
     university_id = serializers.SerializerMethodField()
+    photo = serializers.SerializerMethodField()
 
     def get_university_id(self, obj:  EdProgram):
         return obj.university.pk
 
     def get_university(self, obj:  EdProgram):
         return obj.university.name
+
+    def get_photo(self, obj: EdProgram):
+        request = self.context.get('request')
+        photo_url = obj.photo.url
+        return request.build_absolute_uri(photo_url)
 
     class Meta:
         model = EdProgram
