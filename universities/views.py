@@ -10,6 +10,7 @@ class UniversitiesViewSet(mixins.CreateModelMixin,
                           mixins.RetrieveModelMixin,
                           mixins.ListModelMixin,
                           viewsets.GenericViewSet):
+    pagination_class = None
     queryset = University.objects.all()
     serializer_class = UniversitySerializer
     authentication_classes = []
