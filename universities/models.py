@@ -11,6 +11,7 @@ class University(models.Model):
     lat = models.FloatField()
     lon = models.FloatField()
     scores = models.IntegerField()
+    rating = models.IntegerField()
 
     def get_photos(self):
         return UniversityPhotos.objects.filter(university=self)

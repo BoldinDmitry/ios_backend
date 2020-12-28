@@ -62,7 +62,8 @@ class UniversitySerializer(serializers.ModelSerializer):
                   'programs_counter',
                   'lat',
                   'lon',
-                  'scores']
+                  'scores',
+                  'rating']
 
 
 class UniversityPhotosSerializer(serializers.ModelSerializer):
