@@ -72,7 +72,7 @@ class FavoriteEdProgramsViewSet(viewsets.GenericViewSet):
 
     def create(self, request, *args, **kwargs):
         print("PK::: ", request.user.pk)
-        ed_programs_ids = request.data
+        ed_programs_ids = request.data["education_programs_ids"]
 
         for ed_program_id in ed_programs_ids:
             favorite = Favorite(
