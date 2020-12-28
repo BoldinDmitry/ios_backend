@@ -83,7 +83,12 @@ class FavoriteEdProgramsViewSet(viewsets.GenericViewSet):
         return Response(status=status.HTTP_201_CREATED)
 
     def list(self, request, *args, **kwargs):
-        queryset = self.queryset.filter(user_id=request.user.pk)
+        university_id = request.GET.get('university_id')
+
+        if university_id:
+            queryset = self.queryset.filter(user_id=request.user.pk, education_program__university_id=university_id)
+        else:
+            queryset = self.queryset.filter(user_id=request.user.pk)
 
         education_programs = []
         for favorite in queryset:
