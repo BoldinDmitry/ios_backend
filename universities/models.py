@@ -10,6 +10,7 @@ class University(models.Model):
     programs_counter = models.IntegerField()
     lat = models.FloatField()
     lon = models.FloatField()
+    scores = models.IntegerField()
 
     def get_photos(self):
         return UniversityPhotos.objects.filter(university=self)
