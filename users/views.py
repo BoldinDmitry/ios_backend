@@ -71,6 +71,7 @@ class FavoriteEdProgramsViewSet(viewsets.GenericViewSet):
     serializer_class = FavoriteSerializer
 
     def create(self, request, *args, **kwargs):
+        print("PK::: ", request.user.pk)
         ed_programs_ids = request.data
 
         for ed_program_id in ed_programs_ids:
