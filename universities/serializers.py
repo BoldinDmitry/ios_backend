@@ -8,10 +8,10 @@ class EdProgramSerializer(serializers.ModelSerializer):
     university_id = serializers.SerializerMethodField()
     photo = serializers.SerializerMethodField()
 
-    def get_university_id(self, obj:  EdProgram):
+    def get_university_id(self, obj: EdProgram):
         return obj.university.pk
 
-    def get_university(self, obj:  EdProgram):
+    def get_university(self, obj: EdProgram):
         return obj.university.name
 
     def get_photo(self, obj: EdProgram):
@@ -44,7 +44,6 @@ class UniversitySerializer(serializers.ModelSerializer):
     # def get_photos(university):
     #     photos = university.get_photos()
     #     return UniversityPhotosSerializer(photos, many=True).data
-
 
     def get_ed_programs(self, university):
         ed_programs = university.get_ed_programs()
