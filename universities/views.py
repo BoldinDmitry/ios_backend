@@ -36,6 +36,6 @@ class EdProgramsView(views.APIView):
         university = get_object_or_404(University, id=university_id)
 
         ed_programs = university.get_ed_programs()
-        ed_programs_serializer = EdProgramSerializer(ed_programs, many=True).data
+        ed_programs_serializer = EdProgramSerializer(ed_programs, many=True, context={"request": request}).data
 
         return Response(status=status.HTTP_200_OK, data=ed_programs_serializer)

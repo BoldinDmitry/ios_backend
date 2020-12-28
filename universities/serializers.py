@@ -17,7 +17,10 @@ class EdProgramSerializer(serializers.ModelSerializer):
     def get_photo(self, obj: EdProgram):
         request = self.context.get('request')
         photo_url = obj.photo.url
-        return request.build_absolute_uri(photo_url)
+        if request:
+            return request.build_absolute_uri(photo_url)
+        else:
+            return photo_url
 
     class Meta:
         model = EdProgram
@@ -42,10 +45,10 @@ class UniversitySerializer(serializers.ModelSerializer):
     #     photos = university.get_photos()
     #     return UniversityPhotosSerializer(photos, many=True).data
 
-    @staticmethod
-    def get_ed_programs(university):
+
+    def get_ed_programs(self, university):
         ed_programs = university.get_ed_programs()
-        return EdProgramSerializer(ed_programs, many=True).data
+        return EdProgramSerializer(ed_programs, many=True, context=self.context).data
 
     class Meta:
         model = University
