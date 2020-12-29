@@ -36,6 +36,7 @@ urlpatterns = [
     path("api/v1/login/", users_views.LoginView.as_view()),
 
     path("api/v1/universities/<int:university_id>/programs/", universities_views.EdProgramsView.as_view()),
+    path("api/v1/universities/<int:university_id>/photos/", universities_views.UniversityPhotosView.as_view()),
 
     path('admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
