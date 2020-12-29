@@ -52,7 +52,7 @@ class UniversitySerializer(serializers.ModelSerializer):
     class Meta:
         model = University
         fields = ['id',
-                  # 'photos',
+                  'photos',
                   'ed_programs',
                   'name',
                   'about',
