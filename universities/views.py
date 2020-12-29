@@ -57,6 +57,6 @@ class UniversityPhotosView(views.APIView):
         photos: List[UniversityPhotos] = university.get_photos()
         photos_urls = []
         for photo in photos:
-            photos_urls.append(request.build_absolute_uri(photo.photo))
+            photos_urls.append(photo.photo.url)
 
         return Response(status=status.HTTP_200_OK, data=photos_urls)
