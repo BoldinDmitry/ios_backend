@@ -58,6 +58,6 @@ class UniversityPhotosView(views.APIView):
         photos_urls = []
         for photo in photos:
             # Todo rewrite this
-            photos_urls.append("http://77.223.97.172:8081/"+photo.photo.url)
+            photos_urls.append("http://77.223.97.172:8081"+photo.photo.url)
 
         return Response(status=status.HTTP_200_OK, data=photos_urls)
